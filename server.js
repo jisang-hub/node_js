@@ -32,7 +32,7 @@ server.get('/study', (req, res, next) => {
 
     let student = {
         id : 0,
-        name : "손님",
+        name : "Paul",
         age : 5
     }
 
