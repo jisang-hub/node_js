@@ -30,9 +30,10 @@ server.get('/study', (req, res, next) => {
 
     // http://localhost/study?id=1234&name=백석대
 
+    console.log(req.query.name);
     let student = {
         id : 0,
-        name : "Paul",
+        name : "test",
         age : 5
     }
 
@@ -41,14 +42,16 @@ server.get('/study', (req, res, next) => {
     }
     if(req.query.name !== null && req.query.name !== undefined){
         student.name = req.query.name;
+    }
 
     if(req.query.age !== null && req.query.age !== undefined){
-            student.age = req.query.age;
+        student.age = req.query.age;
     }
-  
+    
     console.log(student);
+    console.log("console.log 는 이렇게 사용합니다.");
     res.render("iWillStudy.html", student);
-};
+});
 
 
 //구구단 페이지
@@ -64,42 +67,36 @@ server.get('/99dan',  (req, res, next) => {
     if(req.query.primary !== null && req.query.primary !== undefined){
         gugudan.primary = req.query.primary;
     }
-  let val = parseInt(req.query.primary);
 
-    
-//console.log(number, isInterger(nal));
-if( Number. isInteger(val == true)){
-
-    // 2단부터 9단까지만 구동되게
-    //if(val) > && val )
-    if(val > 1 && val < 10){
-        res.render("99dan.html", gugudan);
+    /* integer check */
+    let val = parseInt(req.query.primary);
+    /*
+    if(조건){
+        참일때 실행되는 섹타
     }else{
-        res.send("유효하지 않은 값입니다. (2~9");
+        거짓일때 싫애되는 섹터
     }
-}else{
-    res.send("숫자가 아닙니다. ");
-}
 
+    */
+    //console.log(Number.isInteger(val));
+    if( Number.isInteger(val) == true  ){
 
-    res.render("99dan.html", gugudan);
-});
+        // 2단부터 9단까지만 구동되게 
+        //if(val >  && val  )
+        if(val > 1 && val < 10){
+            res.render("99dan.html", gugudan); 
+        }else{
+            res.send("유효하지 않은 값입니다. (2~9)");
 
-// catch 404 and forward to error handler
-server.use(function(req, res, next) {
-    next(createError(404));
-});
+        }
+        
 
-// error handler
-server.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.server.get('env') === 'development' ? err : {};
+    }else{
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+        res.send("숫자가 아닙니다.");
+    }
+  
+    
 });
 
 module.exports = server;
-})
