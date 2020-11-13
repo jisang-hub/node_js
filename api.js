@@ -25,11 +25,10 @@ Connection.query('SELECT * FROM sensor_data', function(error,results,fields){
     if (error) {
         console.log(error);
     }
-
     console.log(results);
-    
+     
     Connection.end();
-   // res.send("welcome is API Function")
+    res.send("welcome is API Function")
 });
 
 api.post('/insSensor', (req, res, next) => {
@@ -50,11 +49,5 @@ api.post('/insSensor', (req, res, next) => {
         console.log(results);
         res.send(results);
     })
-
-    //req.body.sensorIdx
-    //req.body.sensorType
-    //req.body.sensorValue
-
 });
-
 module.exports = api;
