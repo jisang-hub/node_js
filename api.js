@@ -5,6 +5,7 @@ var express = require('express');
 var api     = express();
 var mysql = require('mysql')
 
+
 var dbInfo = {
     
     host: 'ls-712a3de0f216372c332622b5ed5c6f22fe2f67bd.cu0xyssgzj43.ap-northeast-2.rds.amazonaws.com',
@@ -28,7 +29,7 @@ Connection.query('SELECT * FROM sensor_data', function(error,results,fields){
     console.log(results);
      
     Connection.end();
-    res.send("welcome is API Function")
+   // res.send("welcome is API Function")
 });
 
 api.post('/insSensor', (req, res, next) => {
